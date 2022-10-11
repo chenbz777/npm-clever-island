@@ -48,18 +48,19 @@ npm i @chenbz/clever-island
 
 ### 使用
 
-导入
+json
 
-```
+```json
 /pages/home/index.json
 {
     "usingComponents": {
         "NavBar": "@chenbz/clever-island"
-    }
+    },
+    "navigationStyle": "custom"
 }
 ```
 
-使用
+wxml
 
 ```html
 <view>
@@ -70,6 +71,8 @@ npm i @chenbz/clever-island
 ```
 
 手动触发灵动岛
+
+js
 
 ```js
 // pages/home/index.js
