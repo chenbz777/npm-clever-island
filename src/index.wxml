@@ -1,0 +1,39 @@
+<view class="navbar {{position ? 'navbar--position' : 'navbar'}}" style="background-color: {{bgColor}};">
+    <view style="width: 100%; height: {{statusBarHeight}}px;"></view>
+    <view style="padding: {{navBarYPadding}}px {{navBarXPadding}}px; transition: all .3s linear">
+        <!-- 导航栏主体 -->
+        <view class="navbar__body {{showIslandContent ? 'show-island-content' : ''}}" style="border-radius: {{navBarHeight / 2}}px; height: {{navBarBodyTempHeight - 2}}px; background-color: {{showIslandContent ? islandBgColor : bgColor}};">
+            <view class="c-row" style="height: {{navBarBodyHeight}}px;">
+                <!-- 返回区域 -->
+                <view class="navbar__body__left c-row-y-center" style="width: {{rightCapsuleWidth}}px;">
+                    <view class="navbar__body__left--go-back c-row-y-center" style="border-radius: {{navBarHeight / 2}}px;" bindtap="goBack" wx:if="{{showGoBack && !showHome}}">
+                        <image src="./icon/left.svg" mode="heightFix" class="navbar__body__left__image"></image>
+                        返回
+                    </view>
+                    <view class="navbar__body__left--home c-row-y-center" style="border-radius: {{navBarHeight / 2}}px;" wx:if="{{showGoBack && showHome}}">
+                        <view class="navbar__body__left--block-1" bindtap="goBack">
+                            <image src="./icon/left.svg" mode="heightFix" class="navbar__body__left__image"></image>
+                        </view>
+                        <view class="navbar__body__left--block-2" bindtap="goHome">
+                            <image src="./icon/home.svg" mode="heightFix" class="navbar__body__left__image"></image>
+                        </view>
+                    </view>
+                </view>
+                <!-- 灵动丸区域 -->
+                <view class="navbar__body__title" style="height: {{navBarBodyHeight}}px;">
+                    <view class="navbar__body__title__island" style="border-radius: {{navBarHeight / 2}}px; line-height: {{navBarBodyHeight}}px;" bindtap="backTop" bindlongpress="showIslandContent">
+                        {{title}}
+                    </view>
+                </view>
+                <!-- 小程序自带胶囊右侧区域 -->
+                <view style="width: {{rightCapsuleWidth}}px;"></view>
+            </view>
+            <!-- 灵动岛自定义区域 -->
+            <view class="island__content">
+                <slot></slot>
+            </view>
+            <!-- 这里主要是实现点击外部区域关闭“灵动岛” -->
+            <view class="island-content--mask" bindtap="hidesIslandContent" wx:if="{{showIslandContent}}"></view>
+        </view>
+    </view>
+</view>
